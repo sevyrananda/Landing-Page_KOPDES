@@ -1,0 +1,2065 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOPDES Merah Putih</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg,
+                    #991b1b 0%,
+                    #7f1d1d 50%,
+                    #dc2626 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navbar scroll effect */
+        .navbar-transparent {
+            background-color: transparent;
+            backdrop-filter: none;
+            box-shadow: none;
+        }
+
+        .navbar-solid {
+            background-color: rgba(153, 27, 27, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dropdown styling */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .tab-button.active {
+            color: #dc2626;
+            border-bottom-color: #dc2626;
+            border-bottom-width: 2px;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, #991b1b, #dc2626);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 15px rgba(153, 27, 27, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(153, 27, 27, 0.4);
+        }
+
+        /* Animasi untuk chatbot */
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .message-animation {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .btn-pulse:hover {
+            animation: pulse 0.5s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* Floating CTA Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 997;
+        }
+
+        .cta-button {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #991b1b, #dc2626);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(153, 27, 27, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(153, 27, 27, 0.4);
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .floating-cta {
+                left: 20px;
+                right: 20px;
+                bottom: 170px;
+            }
+
+            .cta-button {
+                justify-content: center;
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .chatbot-window {
+                width: calc(100vw - 40px);
+                right: -15px;
+                height: 380px;
+            }
+
+            .back-to-top {
+                bottom: 230px;
+                right: 20px;
+            }
+
+            .chatbot-container {
+                bottom: 30px;
+                right: 20px;
+            }
+
+            .chatbot-button {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .floating-cta {
+                bottom: 180px;
+            }
+
+            .back-to-top {
+                bottom: 240px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .chatbot-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .chatbot-window {
+                height: 350px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Animasi slideshow */
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        #logo-track {
+            animation: slide 30s linear infinite;
+            width: max-content;
+        }
+
+        /* Pause animation on hover */
+        #logo-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #logo-track {
+                animation-duration: 20s;
+            }
+
+            .logo-slide {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #logo-track {
+                animation-duration: 15s;
+            }
+
+            .logo-slide {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Styling untuk dots slideshow */
+        .quote-dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background-color: #dc2626 !important;
+        }
+
+        /* Smooth transition untuk slides */
+        #quoteSlides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Pastikan setiap slide mengambil full height */
+        #quoteSlides>div {
+            min-height: 500px;
+        }
+
+        /* Overlay untuk keterbacaan teks */
+        .bg-gradient-to-t {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            #quoteSlides>div {
+                min-height: 400px;
+            }
+
+            .absolute.inset-0.flex.flex-col.justify-end.p-6 {
+                padding: 1rem;
+            }
+
+            .absolute.inset-0.flex.flex-col.justify-end.p-6 p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Efek hover untuk dots */
+        .quote-dot {
+            transition: all 0.3s ease;
+        }
+
+        .quote-dot:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Chatbot Container -->
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <!-- Chatbot Window -->
+        <div id="chatbotWindow"
+            class="absolute bottom-7 right-0 w-96 max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ease-out hidden"
+            style="height: 400px; opacity: 0; transform: translateY(20px)">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-red-600 to-red-800 p-5 text-white flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-red-600">
+                        <i class="fas fa-comments text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Tanya tentang KOPDES</h3>
+                        <p class="text-xs text-red-100">KOPDES Merah Putih</p>
+                    </div>
+                </div>
+                <button id="closeChatbot"
+                    class="text-white hover:bg-red-800 p-2 rounded-full transition-colors duration-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Messages Container -->
+            <div id="chatbotMessages" class="h-72 overflow-y-auto p-4 bg-gray-50 custom-scrollbar">
+                <!-- Bot message -->
+                <div class="mb-4 message-animation">
+                    <div class="flex items-start space-x-3">
+                        <div
+                            class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
+                            <p class="text-gray-800">
+                                Hai! Siap membantu Anda memahami KOPDES Merah Putih. Pilih
+                                pertanyaan di bawah 👇
+                            </p>
+                            <p class="text-xs text-gray-500 mt-2">
+                                Klik salah satu pertanyaan untuk memulai
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Questions Container -->
+                <div class="p-4 border-t border-gray-200 bg-gray-50">
+                    <div class="space-y-3">
+                        <button onclick="askQuestion(1)"
+                            class="question-btn w-full bg-white border border-gray-300 hover:border-red-400 hover:bg-red-50 text-left rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200 hover:shadow-md btn-pulse">
+                            <div class="flex items-center">
+                                <span
+                                    class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3">1</span>
+                                Apa itu KOPDES Merah Putih?
+                            </div>
+                        </button>
+
+                        <button onclick="askQuestion(2)"
+                            class="question-btn w-full bg-white border border-gray-300 hover:border-red-400 hover:bg-red-50 text-left rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200 hover:shadow-md btn-pulse">
+                            <div class="flex items-center">
+                                <span
+                                    class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3">2</span>
+                                Apa manfaat bergabung?
+                            </div>
+                        </button>
+
+                        <button onclick="askQuestion(3)"
+                            class="question-btn w-full bg-white border border-gray-300 hover:border-red-400 hover:bg-red-50 text-left rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200 hover:shadow-md btn-pulse">
+                            <div class="flex items-center">
+                                <span
+                                    class="bg-red-100 text-red-600 rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3">3</span>
+                                Bagaimana cara daftar?
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="mt-4 text-center">
+                        <p class="text-xs text-gray-500">
+                            KOPDES Merah Putih - Gotong Royong Membangun Desa
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chatbot Button - TAMBAHKAN ID YANG BENAR -->
+        <button id="chatbotButton"
+            class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 focus:outline-none">
+            <i class="fas fa-comments text-2xl"></i>
+            <span
+                class="absolute -top-1 -right-1 w-6 h-6 bg-white text-red-600 rounded-full text-xs flex items-center justify-center font-bold">
+                <i class="fas fa-bolt"></i>
+            </span>
+        </button>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- NAVBAR -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 navbar-transparent">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-red-900 font-bold text-lg"><img src="img/favicon.png" alt="" srcset="" /></span>
+                </div>
+                <div class="text-white text-xl font-bold tracking-tight">
+                    KOPDES Merah Putih
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-white text-sm font-medium">
+                <!-- Beranda dengan Dropdown -->
+                <div class="dropdown relative group">
+                    <button class="flex items-center gap-1 py-2 hover:text-gray-200 transition">
+                        Beranda
+                        <i
+                            class="fas fa-chevron-down text-xs mt-1 transition-transform duration-300 group-hover:rotate-180"></i>
+                    </button>
+                    <div
+                        class="dropdown-menu absolute top-full left-0 w-64 bg-white rounded-xl shadow-2xl py-3 mt-2 border border-gray-100">
+                        <a href="#tentang"
+                            class="flex items-center gap-3 px-5 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 transition rounded-lg mx-2">
+                            <i class="fas fa-info-circle text-red-600 w-5"></i>
+                            <span>Tentang</span>
+                        </a>
+                        <a href="#fitur"
+                            class="flex items-center gap-3 px-5 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 transition rounded-lg mx-2">
+                            <i class="fas fa-star text-red-600 w-5"></i>
+                            <span>Fitur Unggulan</span>
+                        </a>
+                        <a href="#jenis"
+                            class="flex items-center gap-3 px-5 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 transition rounded-lg mx-2">
+                            <i class="fas fa-list text-red-600 w-5"></i>
+                            <span>Jenis</span>
+                        </a>
+                        <a href="#pertanyaan"
+                            class="flex items-center gap-3 px-5 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 transition rounded-lg mx-2">
+                            <i class="fas fa-question-circle text-red-600 w-5"></i>
+                            <span>Pertanyaan Umum</span>
+                        </a>
+                        <a href="#regulasi"
+                            class="flex items-center gap-3 px-5 py-3 text-gray-700 hover:bg-red-50 hover:text-red-700 transition rounded-lg mx-2">
+                            <i class="fas fa-gavel text-red-600 w-5"></i>
+                            <span>Regulasi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#berita" class="relative group py-2">
+                    Berita
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+
+                <a href="#kontak" class="relative group py-2">
+                    Kontak
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
+                </a>
+
+                <a href="https://kopdes.marstech.co.id/login"
+                    class="ml-4 px-6 py-2 rounded-full bg-white text-red-900 text-sm font-semibold hover:bg-gray-100 hover:shadow-lg transition-all duration-300">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Masuk
+                </a>
+            </nav>
+
+            <!-- Mobile Button -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="hidden md:hidden bg-gradient-to-b from-red-900 to-red-800 text-white px-6 py-8 shadow-2xl">
+            <nav class="flex flex-col gap-4 text-base font-medium">
+                <div class="mb-2">
+                    <div class="font-semibold text-gray-200 mb-2">Beranda</div>
+                    <div class="ml-4 flex flex-col gap-3">
+                        <a href="#tentang" class="py-2 text-sm"><i class="fas fa-info-circle mr-3"></i>Tentang</a>
+                        <a href="#fitur" class="py-2 text-sm"><i class="fas fa-star mr-3"></i>Fitur</a>
+                        <a href="#jenis" class="py-2 text-sm"><i class="fas fa-list mr-3"></i>Jenis</a>
+                        <a href="#pertanyaan" class="py-2 text-sm"><i
+                                class="fas fa-question-circle mr-3"></i>Pertanyaan</a>
+                        <a href="#regulasi" class="py-2 text-sm"><i class="fas fa-gavel mr-3"></i>Regulasi</a>
+                    </div>
+                </div>
+
+                <a href="#berita" class="py-2 border-t border-white/10 pt-4"><i
+                        class="fas fa-newspaper mr-3"></i>Berita</a>
+                <a href="#kontak" class="py-2 border-t border-white/10 pt-4"><i class="fas fa-phone mr-3"></i>Kontak</a>
+                <a href="https://kopdes.marstech.co.id/login"
+                    class="mt-4 py-3 px-6 rounded-full bg-white text-red-900 text-center font-semibold">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Masuk
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center overflow-hidden bg-[#7f1d1d]">
+        <!-- Subtle Pattern -->
+        <div class="absolute inset-0 opacity-[0.08]" style="
+          background-image: url(&quot;https://www.transparenttextures.com/patterns/diamond-upholstery.png&quot;);
+        "></div>
+
+        <!-- Gradient Layer -->
+        <div class="absolute inset-0 bg-gradient-to-b from-red-600 via-red-800 to-red-950"></div>
+
+        <!-- Decorative Lines -->
+        <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent">
+        </div>
+        <div
+            class="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent">
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6 pt-24 text-center text-white">
+            <!-- Badge -->
+            <div
+                class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-sm tracking-wide mb-8">
+                Platform Digital Koperasi Desa Nasional
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                KOPDES <span class="text">Merah Putih</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg md:text-xl text-white/85 max-w-3xl mx-auto leading-relaxed mb-12">
+                Platform digital terintegrasi untuk pengelolaan koperasi desa yang
+                transparan, akuntabel, dan berkelanjutan dalam mendukung penguatan
+                ekonomi nasional berbasis desa.
+            </p>
+
+            <!-- CTA -->
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="https://wa.me/6281234567890?text=Halo%20KOPDES%20Merah%20Putih,%20saya%20ingin%20bertanya%20tentang%20SIMKOPDES"
+                    class="px-10 py-4 bg-white text-red-900 rounded-full font-semibold hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                    <i class="fas fa-phone mr-2"></i>Daftar Gratis
+                </a>
+                <a href="#tentang"
+                    class="px-10 py-4 border border-white/40 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+                    <i class="fas fa-info-circle mr-2"></i>Pelajari Lebih Lanjut
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="text-3xl font-bold text-white-300">5.000+</p>
+                    <p class="text-sm text-white/70 mt-1">Koperasi Desa</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-white-300">38</p>
+                    <p class="text-sm text-white/70 mt-1">Provinsi</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-white-300">100%</p>
+                    <p class="text-sm text-white/70 mt-1">Transparan</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-white-300">24/7</p>
+                    <p class="text-sm text-white/70 mt-1">Layanan Digital</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KOPDES MERAH PUTIH -->
+    <section id="tentang" class="py-10 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl font-bold mb-4">
+                    Tentang <span class="text-red-700">KOPDES Merah Putih</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <div class="fade-in-up">
+                    <div class="bg-gradient-to-br from-red-50 to-white p-8 rounded-2xl shadow-sm h-full">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">
+                            Gerakan Nasional Membangun Desa
+                        </h3>
+                        <p class="text-gray-700 mb-6">
+                            KOPDES Merah Putih adalah implementasi nyata dari amanat
+                            <strong>Undang-Undang Dasar 1945 Pasal 33</strong> yang
+                            mengedepankan asas kekeluargaan dan usaha bersama. Inisiatif ini
+                            mendapat dukungan penuh dari Presiden Republik Indonesia untuk
+                            menggerakkan ekonomi kerakyatan.
+                        </p>
+
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-flag text-red-600 mt-1"></i>
+                                <span><strong>Diluncurkan secara resmi</strong> pada 3 Maret
+                                    2025, menargetkan 80.000 koperasi desa/kelurahan</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-calendar-check text-red-600 mt-1"></i>
+                                <span><strong>Launching nasional</strong> bertepatan dengan Hari
+                                    Koperasi Nasional, 12 Juli 2025</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-bullseye text-red-600 mt-1"></i>
+                                <span><strong>Tujuan utama</strong> meningkatkan ketahanan pangan
+                                    dan kesejahteraan ekonomi masyarakat desa</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fade-in-up animation-delay-300">
+                    <!-- Slideshow Container - Gambar Full -->
+                    <div class="relative bg-white rounded-2xl shadow-lg overflow-hidden h-full min-h-[500px]">
+                        <!-- Slides -->
+                        <div id="quoteSlides" class="flex transition-transform duration-500 ease-in-out h-full">
+                            <!-- Slide 1: Presiden Prabowo -->
+                            <div class="min-w-full h-full relative">
+                                <!-- Gambar Full Container -->
+                                <div class="absolute inset-0">
+                                    <img src="img/presiden.png" alt="Presiden Prabowo Subianto"
+                                        class="w-full h-full object-cover" />
+
+                                    <!-- Overlay Gradient untuk teks -->
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
+                                    </div>
+                                </div>
+
+                                <!-- Teks di atas gambar -->
+                                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left text-3xl text-red-300 mb-3 opacity-80"></i>
+                                        <p class="text-lg italic leading-relaxed mb-4">
+                                            "Koperasi adalah alatnya orang lemah, alatnya bangsa yang lemah.
+                                            Tapi kalau bersatu, mereka jadi kekuatan. Dari ekonomi lemah
+                                            menjadi ekonomi yang kuat. Itulah konsep koperasi."
+                                        </p>
+                                    </div>
+
+                                    <div class="pt-4 border-t border-white/30">
+                                        <h4 class="font-bold text-xl">
+                                            Presiden Prabowo Subianto
+                                        </h4>
+                                        <p class="text-white/90">
+                                            Presiden Republik Indonesia
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Menko Pangan -->
+                            <div class="min-w-full h-full relative">
+                                <!-- Gambar/Background -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-yellow-700 to-yellow-900">
+                                    <img src="img/menkopangan.png" alt="Zulkifli Hasan"
+                                        class="w-full h-full object-cover" />
+                                </div>
+
+                                <!-- Teks di tengah -->
+                                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left text-3xl text-red-300 mb-3 opacity-80"></i>
+                                        <p class="text-lg italic leading-relaxed mb-4">
+                                            "Kopdes/Kel Merah Putih: Bangun Koperasi Desa, Indonesia Jaya"
+                                        </p>
+
+                                        <div class="pt-6 border-t border-white/30">
+                                            <h4 class="font-bold text-xl">Zulkifli Hasan</h4>
+                                            <p class="text-white/90">
+                                                Menteri Koordinator Bidang Pangan
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Menteri Koperasi -->
+                            <div class="min-w-full h-full relative">
+                                <!-- Gambar/Background -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-red-800 to-red-900">
+                                    <img src="img/menkop.png" alt="Ferry Juliantono"
+                                        class="w-full h-full object-cover" />
+                                </div>
+
+                                <!-- Teks -->
+                                <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                                    <div class="mb-4">
+                                        <i class="fas fa-quote-left text-3xl text-red-300 mb-3 opacity-80"></i>
+                                        <p class="text-lg italic leading-relaxed mb-4">
+                                            "Koperasi Desa/Kelurahan Merah Putih ini akan menghidupkan
+                                            kembali semangat ekonomi kerakyatan, selaras dengan nilai
+                                            yang terkandung dalam Pasal 33 UU 1945"
+                                        </p>
+                                    </div>
+
+                                    <div class="pt-4 border-t border-white/30">
+                                        <h4 class="font-bold text-xl">Ferry Juliantono</h4>
+                                        <p class="text-white/90">
+                                            Menteri Koperasi Republik Indonesia
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Dots -->
+                        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                            <button
+                                class="quote-dot w-3 h-3 rounded-full bg-white/80 hover:bg-white transition-all active"></button>
+                            <button
+                                class="quote-dot w-3 h-3 rounded-full bg-white/80 hover:bg-white transition-all"></button>
+                            <button
+                                class="quote-dot w-3 h-3 rounded-full bg-white/80 hover:bg-white transition-all"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: MITRA & SERTIFIKASI -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-gray-800">
+                    Didukung oleh <span class="text-red-700">Mitra Terpercaya</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Kolaborasi strategis dengan berbagai lembaga nasional dan
+                    internasional untuk memastikan kualitas layanan terbaik.
+                </p>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="relative overflow-hidden py-6">
+                <!-- Track untuk logo (akan bergerak) -->
+                <div id="logo-track" class="flex space-x-8">
+                    <!-- Logo 1 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/komdigi.png" alt="KOMINFO Digital" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 2 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/iso9001.jpeg" alt="ISO 9001" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 3 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/iso27001.png" alt="ISO 27001" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 4 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/idxcoop.png" alt="idXCOOP" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 5 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/kemenumkm.png" alt="KemenUMKM" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 6 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/kemenkop.png" alt="Kemenkop" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 7 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/ind.png" alt="Indonesian Consortium" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 8 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/ojk.png" alt="OJK" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Logo 9 -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/bangga.png" alt="Bangga Buatan Indonesia"
+                            class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <!-- Duplikat untuk efek infinite scroll -->
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/komdigi.png" alt="KOMINFO Digital" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/iso9001.jpeg" alt="ISO 9001" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/iso27001.png" alt="ISO 27001" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        <img src="img/idxcoop.png" alt="idXCOOP" class="max-h-20 max-w-full object-contain" />
+                    </div>
+                </div>
+
+                <!-- Gradient overlay untuk efek fade di sisi -->
+                <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-100 to-transparent z-10">
+                </div>
+                <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-100 to-transparent z-10">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MENGAPA MEMILIH  -->
+    <section class="py-10 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl font-bold mb-4">
+                    Mengapa Memilih <span class="text-red-700">MARS BANKING SYSTEM </span><span
+                        class="text-red-700"></span>KOPDES Merah Putih</span>?
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Platform terintegrasi yang dirancang khusus untuk memenuhi kebutuhan
+                    pengelolaan koperasi desa di era digital.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-sm card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Manajemen Anggota</h3>
+                    <p class="text-gray-600">
+                        Kelola data anggota koperasi secara digital dengan sistem yang
+                        aman dan terpusat.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-sm card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Laporan Keuangan</h3>
+                    <p class="text-gray-600">
+                        Pantau arus keuangan koperasi secara real-time dengan dashboard
+                        yang intuitif.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-sm card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-link text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Integrasi Nasional</h3>
+                    <p class="text-gray-600">
+                        Terhubung dengan sistem pemerintah pusat dan daerah untuk
+                        pelaporan yang mudah.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-sm card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Keamanan Data</h3>
+                    <p class="text-gray-600">
+                        Data koperasi terlindungi dengan enkripsi tingkat tinggi dan
+                        backup rutin.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FITUR UNGGULAN -->
+    <section id="fitur" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up">
+                    <h2 class="text-4xl font-bold mb-6">
+                        Fitur <span class="text-red-700">Unggulan</span> Platform Kami
+                    </h2>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        SIMKOPDES menyediakan semua alat yang dibutuhkan untuk mengelola
+                        koperasi desa secara efektif dan efisien.
+                    </p>
+
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">
+                                    Simpanan & Pinjaman Digital
+                                </h4>
+                                <p class="text-gray-600">
+                                    Kelola simpanan dan pinjaman anggota dengan sistem yang
+                                    terautomasi.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Rapat & Voting Online</h4>
+                                <p class="text-gray-600">
+                                    Lakukan rapat anggota dan pengambilan keputusan secara
+                                    digital.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-check text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Pelaporan Otomatis</h4>
+                                <p class="text-gray-600">
+                                    Hasilkan laporan yang dibutuhkan instansi pemerintah secara
+                                    otomatis.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="fade-in-up animation-delay-300">
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-red-600 to-red-800 rounded-2xl p-8 text-white shadow-2xl">
+                            <h3 class="text-2xl font-bold mb-6">Demo Sistem</h3>
+                            <p class="mb-6">
+                                Coba pengalaman menggunakan dashboard SIMKOPDES dengan data
+                                contoh.
+                            </p>
+                            <a href="https://kopdes.marstech.co.id/demo"
+                                class="inline-flex items-center gap-2 bg-white text-red-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                                <i class="fas fa-play"></i>
+                                Coba Dashboard Demo
+                            </a>
+                        </div>
+
+                        <!-- Floating Stats -->
+                        <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-6 max-w-xs">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-pie text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold">94%</div>
+                                    <div class="text-gray-600 text-sm">Koperasi Puas</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Kepuasan pengguna berdasarkan survei 2024
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JENIS GERAI SECTION -->
+    <section id="jenis" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">
+                    Jenis <span class="text-red-700">Gerai</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Berbagai jenis gerai dalam ekosistem KOPDES Merah Putih
+                </p>
+            </div>
+
+            <!-- Flex Container untuk rata tengah -->
+            <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+                <!-- Item 1 -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-shopping-basket text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Gerai Sembako</h4>
+                            <p class="text-xs text-gray-500">Embrio KopHub</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-pills text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Apotek Desa</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-building text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Gerai Kantor Koperasi</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-hand-holding-usd text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Gerai Simpan Pinjam</h4>
+                            <p class="text-xs text-gray-500">Embrio Kop Bank</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-clinic-medical text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Gerai Klinik Desa</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-snowflake text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Cold Storage</h4>
+                            <p class="text-xs text-gray-500">Cold Chain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7 - Lebar penuh -->
+                <div
+                    class="border border-gray-200 rounded-lg p-3 hover:border-red-300 transition-colors duration-200 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-truck text-red-600 text-xs"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="font-medium text-sm text-gray-800">Logistik (Distribusi)</h4>
+                            <p class="text-xs text-gray-500">Jaringan distribusi terpadu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERTANYAAN SECTION -->
+    <section id="pertanyaan" class="py-10 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">
+                    Pertanyaan <span class="text-red-700">Umum</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Temukan jawaban untuk pertanyaan yang sering diajukan tentang
+                    SIMKOPDES.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden card-hover">
+                    <button
+                        class="faq-btn w-full flex justify-between items-center px-8 py-6 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-all duration-300">
+                        <span>Apa itu Koperasi Desa/Kelurahan Merah Putih?</span>
+                        <span class="faq-icon transition-transform duration-300 text-red-600 text-xl">+</span>
+                    </button>
+                    <div
+                        class="faq-content hidden px-8 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Koperasi Desa/Kelurahan Merah Putih adalah lembaga ekonomi
+                        beranggotakan masyarakat desa yang dibentuk untuk meningkatkan
+                        kesejahteraan melalui prinsip gotong royong, kekeluargaan, dan
+                        partisipasi bersama sesuai dengan nilai-nilai Pancasila.
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden card-hover">
+                    <button
+                        class="faq-btn w-full flex justify-between items-center px-8 py-6 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-all duration-300">
+                        <span>Apa tujuan pembentukan koperasi ini?</span>
+                        <span class="faq-icon transition-transform duration-300 text-red-600 text-xl">+</span>
+                    </button>
+                    <div
+                        class="faq-content hidden px-8 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Tujuan pembentukan koperasi ini adalah memperkuat ekonomi desa,
+                        meningkatkan kesejahteraan masyarakat, dan mendorong kemandirian
+                        ekonomi berbasis potensi lokal melalui pendekatan digital dan
+                        inovatif.
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden card-hover">
+                    <button
+                        class="faq-btn w-full flex justify-between items-center px-8 py-6 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-all duration-300">
+                        <span>Siapa saja yang dapat menjadi anggota koperasi?</span>
+                        <span class="faq-icon transition-transform duration-300 text-red-600 text-xl">+</span>
+                    </button>
+                    <div
+                        class="faq-content hidden px-8 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Anggota koperasi adalah masyarakat desa atau kelurahan setempat
+                        yang memenuhi persyaratan sesuai Anggaran Dasar dan Anggaran Rumah
+                        Tangga koperasi, dengan komitmen untuk aktif berkontribusi dalam
+                        pengembangan koperasi.
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden card-hover">
+                    <button
+                        class="faq-btn w-full flex justify-between items-center px-8 py-6 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-all duration-300">
+                        <span>Bagaimana cara mendaftarkan koperasi ke SIMKOPDES?</span>
+                        <span class="faq-icon transition-transform duration-300 text-red-600 text-xl">+</span>
+                    </button>
+                    <div
+                        class="faq-content hidden px-8 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                        Pendaftaran dapat dilakukan melalui website resmi SIMKOPDES dengan
+                        menyiapkan dokumen yang diperlukan. Tim kami akan membantu proses
+                        verifikasi dan onboarding secara gratis.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGULASI SECTION -->
+    <section id="regulasi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div
+                class="bg-gradient-to-br from-red-50 to-white rounded-3xl shadow-xl overflow-hidden border border-red-100">
+                <div class="bg-gradient-to-r from-red-700 to-red-800 text-white px-10 py-8">
+                    <h2 class="text-2xl md:text-3xl font-bold leading-snug">
+                        Regulasi & Dasar Hukum
+                    </h2>
+                </div>
+
+                <!-- Simple Tabs -->
+                <div class="border-b border-gray-200">
+                    <div class="flex px-6 pt-6">
+                        <button onclick="showTab('uu')"
+                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition active"
+                            data-tab="uu">
+                            UU
+                        </button>
+                        <button onclick="showTab('pp')"
+                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition"
+                            data-tab="pp">
+                            PP
+                        </button>
+                        <button onclick="showTab('keppres')"
+                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition"
+                            data-tab="keppres">
+                            Keppres
+                        </button>
+                        <button onclick="showTab('lainnya')"
+                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition"
+                            data-tab="lainnya">
+                            Lainnya
+                        </button>
+                    </div>
+                </div>
+
+                <div class="px-10 py-8">
+                    <!-- Tab Content: UU -->
+                    <div id="tab-uu" class="tab-content">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">
+                            Undang-Undang
+                        </h3>
+                        <div class="space-y-4">
+                            <div
+                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
+                                <i class="fas fa-file-contract text-red-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">
+                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/1.%20UU%20Nomor%2025%20Tahun%201992.pdf"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="text-red-700 hover:underline">
+                                            UU No. 25 Tahun 1992
+                                        </a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">Tentang Perkoperasian</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: PP -->
+                    <div id="tab-pp" class="tab-content hidden">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">
+                            Peraturan Pemerintah
+                        </h3>
+                        <div class="space-y-4">
+                            <div
+                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
+                                <i class="fas fa-file-alt text-red-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">
+                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/2.%20PP%20Nomor%207%20Tahun%202021.pdf"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="text-red-700 hover:underline">
+                                            Peraturan Pemerintah Nomor 7 Tahun 2021
+                                        </a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">
+                                        tentang Kemudahan, Pelindungan dan Pemberdayaan Koperasi
+                                        dan Usaha Mikro, Kecil dan Menengah
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Keppres -->
+                    <div id="tab-keppres" class="tab-content hidden">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">
+                            Keputusan Presiden
+                        </h3>
+                        <div class="space-y-4">
+                            <div
+                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
+                                <i class="fas fa-file-alt text-red-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">
+                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/15.%20Keputusan%20Presiden%20Republik%20Indonesia%20Nomor%209%20Tahun%202025%20Tentang%20Satuan%20Tugas%20Percepatan%20Pembentukan%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="text-red-700 hover:underline">
+                                            Keputusan Presiden Republik Indonesia Nomor 9 Tahun 2025
+                                        </a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">
+                                        Tentang Satuan Tugas Percepatan Pembentukan Koperasi
+                                        Desa/Kelurahan Merah Putih
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Lainnya -->
+                    <div id="tab-lainnya" class="tab-content hidden">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">Lainnya</h3>
+                        <div class="space-y-4">
+                            <div
+                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
+                                <i class="fas fa-file-alt text-red-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">
+                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/11.%20Petunjuk%20Pelaksanaan%20Kopdes%20Merah%20Putih%20Paraf%20%26%20TTD%20Menteri%20Koperasi.pdf"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="text-red-700 hover:underline">
+                                            Petunjuk Pelaksanaan Menteri Koperasi Republik Indonesia
+                                            Nomor 1 Tahun 2025
+                                        </a>
+                                    </h4>
+                                    <p class="text-gray-600 text-sm">
+                                        Tentang Pembentukan Koperasi Desa/Kelurahan Merah Putih
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll(".tab-content").forEach((content) => {
+                content.classList.add("hidden");
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll(".tab-button").forEach((button) => {
+                button.classList.remove("active");
+            });
+
+            // Show selected tab
+            document.getElementById("tab-" + tabId).classList.remove("hidden");
+
+            // Add active class to clicked button
+            event.target.classList.add("active");
+        }
+    </script>
+
+    <!-- BERITA SECTION -->
+    <section id="berita" class="py-10 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    Berita <span class="text-red-700">Terbaru</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Informasi terkini seputar koperasi desa dan perkembangan SIMKOPDES.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Berita 1" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="text-sm text-red-600 font-semibold mb-2">
+                            13 Jan 2026
+                        </div>
+                        <h4 class="font-bold text-lg mb-3">
+                            Workshop Digitalisasi Koperasi Desa di Jawa Timur
+                        </h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Pelatihan penggunaan SIMKOPDES untuk 50 koperasi desa di Jawa
+                            Timur.
+                        </p>
+                        <a href="#" class="text-red-700 font-semibold text-sm hover:text-red-800">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Berita 2" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="text-sm text-red-600 font-semibold mb-2">
+                            5 Jan 2026
+                        </div>
+                        <h4 class="font-bold text-lg mb-3">
+                            500 Koperasi Desa Sudah Terdaftar di SIMKOPDES
+                        </h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Pencapaian milestone 500 koperasi desa terdaftar di platform
+                            nasional.
+                        </p>
+                        <a href="#" class="text-red-700 font-semibold text-sm hover:text-red-800">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover">
+                    <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Berita 3" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <div class="text-sm text-red-600 font-semibold mb-2">
+                            28 Des 2025
+                        </div>
+                        <h4 class="font-bold text-lg mb-3">
+                            Peluncuran Fitur Baru: Laporan Otomatis
+                        </h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Fitur laporan otomatis untuk mempermudah pelaporan ke instansi
+                            pemerintah.
+                        </p>
+                        <a href="#" class="text-red-700 font-semibold text-sm hover:text-red-800">Baca Selengkapnya
+                            →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK SECTION -->
+    <section id="kontak" class="py-10 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">
+                    Hubungi <span class="gradient-text">Kami</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Tim kami siap membantu Anda dalam proses digitalisasi koperasi desa.
+                </p>
+            </div>
+
+            <!-- Kontak Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Alamat -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="bg-gradient-to-br from-white to-red-50 p-8 rounded-3xl shadow-sm text-center border border-red-100 hover:border-red-300 transition-all duration-300">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Alamat Kantor</h3>
+                    <div class="space-y-4 text-gray-600">
+                        <div class="p-4 bg-white/50 rounded-xl">
+                            <p class="font-medium text-gray-800 mb-1">Office 1</p>
+                            <p>JL. Margatama Asri IV No. 3<br />Kota Madiun, Jawa Timur</p>
+                        </div>
+                    </div>
+                    <a href="https://www.google.com/maps/place/MARSTECH/@-7.636993,111.5400567,17z/data=!3m1!4b1!4m6!3m5!1s0x2e79bf36978c3bf3:0x8c1997902afb269f!8m2!3d-7.6369983!4d111.542637!16s%2Fg%2F11k3_znx1s?entry=ttu&g_ep=EgoyMDI2MDEyMC4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        class="inline-block mt-6 px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold shadow-md">
+                        <i class="fas fa-directions mr-2"></i>Petunjuk Arah
+                    </a>
+                </div>
+
+                <!-- Telepon -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="bg-gradient-to-br from-white to-red-50 p-8 rounded-3xl shadow-sm text-center border border-red-100 hover:border-red-300 transition-all duration-300">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                        <i class="fas fa-phone-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Telepon</h3>
+                    <div class="space-y-6">
+                        <div class="p-4 bg-white/50 rounded-xl">
+                            <p class="text-lg font-bold text-gray-800">(021) 1234-5678</p>
+                            <p class="text-gray-500 text-sm">Administrasi</p>
+                        </div>
+                    </div>
+                    <a href="tel:+622112345678"
+                        class="inline-block mt-6 px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold shadow-md">
+                        <i class="fas fa-phone mr-2"></i>Telepon Sekarang
+                    </a>
+                </div>
+
+                <!-- Email & Sosial -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="bg-gradient-to-br from-white to-red-50 p-8 rounded-3xl shadow-sm text-center border border-red-100 hover:border-red-300 transition-all duration-300">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md">
+                        <i class="fas fa-envelope text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">
+                        Email & Media Sosial
+                    </h3>
+                    <div class="space-y-4 mb-6">
+                        <a href="mailto:info@simkopdes.id"
+                            class="block p-3 bg-white/50 rounded-lg hover:bg-white transition group">
+                            <div class="font-medium text-gray-800 group-hover:text-red-700">
+                                info@simkopdes.id
+                            </div>
+                            <div class="text-sm text-gray-500">Informasi Umum</div>
+                        </a>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <a href="#"
+                            class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition shadow-md">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition shadow-md">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition shadow-md">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition shadow-md">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-red-900 font-bold"><img src="img/favicon.png" alt="" srcset="" /></span>
+                        </div>
+                        <div class="text-white text-xl font-bold">KOPDES Merah Putih</div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Sistem Informasi Koperasi Desa Nasional untuk transformasi digital
+                        ekonomi desa.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-700 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-700 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-700 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-700 hover:text-white transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Navigasi</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#tentang" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Tentang
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#fitur" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Fitur Unggulan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#jenis" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Jenis
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pertanyaan" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Pertanyaan Umum
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#regulasi" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Regulasi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Layanan</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Pelatihan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Dokumentasi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Bantuan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#berita" class="hover:text-white transition flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs text-red-500"></i>
+                                Berita
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold mb-6 text-lg tracking-wide">
+                        Kontak
+                    </h4>
+
+                    <ul class="space-y-5 text-sm text-gray-200">
+                        <!-- Alamat -->
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-red-500"></i>
+                            <div class="space-y-2 leading-relaxed">
+                                <p>
+                                    <span class="font-medium text-white">Office 1</span><br />
+                                    JL. Margatama Asri IV No. 3<br />
+                                    Kota Madiun, Jawa Timur
+                                </p>
+                                <p>
+                                    <span class="font-medium text-white">Office 2</span><br />
+                                    Surya Residence Blok 4F No. 17<br />
+                                    Buduran, Sidoarjo – Jawa Timur
+                                </p>
+                                <p>
+                                    <span class="font-medium text-white">Office 3</span><br />
+                                    Perum Griya Gadang Sejahtera Kav. 14<br />
+                                    Gadang, Sukun – Kota Malang, Jawa Timur
+                                </p>
+                            </div>
+                        </li>
+
+                        <!-- Telepon -->
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-red-500"></i>
+                            <span>(021) 1234-5678</span>
+                        </li>
+
+                        <!-- Email -->
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-red-500"></i>
+                            <span>info@simkopdes.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm">
+                    © 2026 KOPDES Merah Putih. Hak Cipta Dilindungi Undang-Undang.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById("navbar");
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        // Chatbot elements
+        const chatbotWindow = document.getElementById("chatbotWindow");
+        const chatbotButton = document.getElementById("chatbotButton");
+        const closeChatbot = document.getElementById("closeChatbot");
+        const chatbotMessages = document.getElementById("chatbotMessages");
+
+        // Data jawaban untuk pertanyaan chatbot
+        const answers = {
+            1: {
+                title: "Apa itu KOPDES Merah Putih?",
+                content:
+                    "KOPDES (Koperasi Desa) Merah Putih adalah koperasi yang beroperasi di tingkat desa dengan semangat gotong royong dan kekeluargaan. Koperasi ini bertujuan untuk meningkatkan perekonomian masyarakat desa melalui berbagai layanan keuangan dan pembiayaan usaha mikro.",
+                details: [
+                    "Berdiri atas dasar semangat kebersamaan",
+                    "Fokus pada pengembangan ekonomi desa",
+                    "Anggota berasal dari masyarakat desa setempat",
+                    "Berbadan hukum resmi sesuai undang-undang koperasi",
+                ],
+            },
+            2: {
+                title: "Apa manfaat bergabung?",
+                content:
+                    "Bergabung dengan KOPDES Merah Putih memberikan banyak manfaat bagi anggota, baik secara finansial maupun sosial.",
+                details: [
+                    "Akses pinjaman usaha dengan bunga terjangkau",
+                    "Bagi hasil dari keuntungan koperasi (SHU)",
+                    "Pelatihan usaha dan keterampilan",
+                    "Jaringan bisnis dengan anggota lainnya",
+                    "Tabungan berjangka dengan imbal hasil menarik",
+                    "Asuransi kesehatan dengan premi terjangkau",
+                ],
+            },
+            3: {
+                title: "Bagaimana cara daftar?",
+                content:
+                    "Pendaftaran anggota KOPDES Merah Putih sangat mudah dan terbuka untuk seluruh warga desa.",
+                details: [
+                    "Kunjungi kantor KOPDES di desa Anda",
+                    "Isi formulir pendaftaran anggota",
+                    "Lampirkan fotokopi KTP dan KK",
+                    "Membayar simpanan pokok sesuai ketentuan",
+                    "Mengikuti orientasi keanggotaan",
+                    "Tunggu proses verifikasi (1-3 hari kerja)",
+                ],
+            },
+        };
+
+        // Tampilkan/sembunyikan chatbot - FIXED VERSION
+        chatbotButton.addEventListener("click", function () {
+            chatbotWindow.classList.remove("hidden");
+            setTimeout(() => {
+                chatbotWindow.style.opacity = "1";
+                chatbotWindow.style.transform = "translateY(0)";
+            }, 10);
+        });
+
+        closeChatbot.addEventListener("click", function () {
+            chatbotWindow.style.opacity = "0";
+            chatbotWindow.style.transform = "translateY(20px)";
+            setTimeout(() => {
+                chatbotWindow.classList.add("hidden");
+            }, 300);
+        });
+
+        // Fungsi untuk menampilkan pertanyaan dan jawaban
+        function askQuestion(questionId) {
+            const answer = answers[questionId];
+
+            // Tambahkan pesan user (pertanyaan)
+            const userMessage = document.createElement("div");
+            userMessage.className = "mb-4 message-animation";
+            userMessage.innerHTML = `
+                <div class="flex items-start space-x-3 justify-end">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl rounded-tr-none px-4 py-3 shadow-sm max-w-[80%]">
+                        <p class="text-white font-medium">${answer.title}</p>
+                    </div>
+                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 flex-shrink-0">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            `;
+            chatbotMessages.appendChild(userMessage);
+
+            // Tambahkan pesan bot (jawaban)
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.className = "mb-6 message-animation";
+                botMessage.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm max-w-[80%]">
+                            <p class="text-gray-800 font-medium text-red-700 mb-2">${answer.title}</p>
+                            <p class="text-gray-700 mb-3">${answer.content}</p>
+                            <div class="space-y-2">
+                                ${answer.details
+                        .map(
+                            (detail) => `
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2 text-sm"></i>
+                                        <span class="text-gray-700 text-sm">${detail}</span>
+                                    </div>
+                                `,
+                        )
+                        .join("")}
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-gray-100">
+                                <p class="text-xs text-gray-500">Ada pertanyaan lain? Silakan pilih pertanyaan di bawah 👇</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                chatbotMessages.appendChild(botMessage);
+
+                // Scroll ke bawah
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }, 500);
+        }
+
+        // Event listener untuk tombol pertanyaan dengan efek visual
+        document.querySelectorAll(".question-btn").forEach((btn) => {
+            btn.addEventListener("click", function () {
+                // Efek visual saat tombol diklik
+                this.classList.add("bg-red-100", "border-red-400");
+                setTimeout(() => {
+                    this.classList.remove("bg-red-100", "border-red-400");
+                }, 300);
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 100) {
+                navbar.classList.remove("navbar-transparent");
+                navbar.classList.add("navbar-solid");
+            } else {
+                navbar.classList.remove("navbar-solid");
+                navbar.classList.add("navbar-transparent");
+            }
+
+            // Back to top button
+            const backToTop = document.getElementById("backToTop");
+            if (window.scrollY > 500) {
+                backToTop.classList.add("visible");
+            } else {
+                backToTop.classList.remove("visible");
+            }
+        });
+
+        // Mobile menu toggle
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            menuBtn.innerHTML = mobileMenu.classList.contains("hidden")
+                ? '<i class="fas fa-bars"></i>'
+                : '<i class="fas fa-times"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll("#mobileMenu a").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute("href");
+                if (targetId === "#") return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: "smooth",
+                    });
+                }
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll(".faq-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector(".faq-icon");
+
+                // Toggle current
+                content.classList.toggle("hidden");
+                icon.textContent = content.classList.contains("hidden") ? "+" : "−";
+            });
+        });
+
+        // Back to top functionality
+        document.getElementById("backToTop").addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+
+        // Add animation to elements on scroll
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize navbar state
+            if (window.scrollY > 100) {
+                navbar.classList.remove("navbar-transparent");
+                navbar.classList.add("navbar-solid");
+            }
+
+            // Add animation delay classes
+            const elements = document.querySelectorAll(".fade-in-up");
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Slider untuk mitra
+        let logoSliderInterval;
+        let currentSlide = 0;
+        const totalSlides = 3; // Ada 3 set logo
+
+        function startLogoSlider() {
+            logoSliderInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateLogoDots();
+            }, 10000); // Ganti slide setiap 10 detik
+        }
+
+        // Mulai slider saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", () => {
+            startLogoSlider();
+        });
+
+        // Reset animasi CSS saat hover
+        const logoTrack = document.getElementById("logo-track");
+        logoTrack.addEventListener("mouseenter", () => {
+            logoTrack.style.animationPlayState = "paused";
+        });
+
+        logoTrack.addEventListener("mouseleave", () => {
+            logoTrack.style.animationPlayState = "running";
+        });
+
+
+        // Quote Slideshow Script
+        document.addEventListener('DOMContentLoaded', function () {
+            const quoteSlides = document.getElementById('quoteSlides');
+            const quoteDots = document.querySelectorAll('.quote-dot');
+
+            let currentQuoteSlide = 0;
+            const totalQuoteSlides = 3;
+            let quoteSlideInterval;
+
+            function showQuoteSlide(index) {
+                if (index >= totalQuoteSlides) currentQuoteSlide = 0;
+                else if (index < 0) currentQuoteSlide = totalQuoteSlides - 1;
+                else currentQuoteSlide = index;
+
+                quoteSlides.style.transform = `translateX(-${currentQuoteSlide * 100}%)`;
+
+                // Update dots
+                quoteDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentQuoteSlide);
+                    dot.classList.toggle('bg-red-600', i === currentQuoteSlide);
+                    dot.classList.toggle('bg-white/80', i !== currentQuoteSlide);
+                });
+            }
+
+            function nextQuoteSlide() {
+                showQuoteSlide(currentQuoteSlide + 1);
+            }
+
+            // Start auto slideshow
+            function startQuoteSlideshow() {
+                quoteSlideInterval = setInterval(nextQuoteSlide, 6000);
+            }
+
+            // Dot navigation
+            quoteDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showQuoteSlide(index);
+                    resetQuoteInterval();
+                });
+            });
+
+            // Reset interval on interaction
+            function resetQuoteInterval() {
+                clearInterval(quoteSlideInterval);
+                startQuoteSlideshow();
+            }
+
+            // Pause on hover
+            if (quoteSlides && quoteSlides.parentElement) {
+                quoteSlides.parentElement.addEventListener('mouseenter', () => {
+                    clearInterval(quoteSlideInterval);
+                });
+
+                quoteSlides.parentElement.addEventListener('mouseleave', () => {
+                    startQuoteSlideshow();
+                });
+            }
+
+            // Initialize slideshow
+            startQuoteSlideshow();
+        });
+    </script>
+</body>
+
+</html>
