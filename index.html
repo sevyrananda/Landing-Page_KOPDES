@@ -297,36 +297,31 @@
             }
         }
 
-        #logo-track {
-            animation: slide 30s linear infinite;
+        /* track animasi */
+        .logo-track {
             width: max-content;
+            animation: marquee 35s linear infinite;
         }
 
-        /* Pause animation on hover */
-        #logo-track:hover {
+        /* pause saat hover area slider */
+        .group:hover .logo-track {
             animation-play-state: paused;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            #logo-track {
-                animation-duration: 20s;
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
             }
 
-            .logo-slide {
-                width: 120px;
-                height: 120px;
+            100% {
+                transform: translateX(-50%);
             }
         }
 
-        @media (max-width: 480px) {
-            #logo-track {
-                animation-duration: 15s;
-            }
-
-            .logo-slide {
-                width: 100px;
-                height: 100px;
+        /* mobile lebih cepat biar nggak kelamaan */
+        @media (max-width: 640px) {
+            .logo-track {
+                animation-duration: 22s;
             }
         }
 
@@ -826,90 +821,124 @@
             </div>
 
             <!-- Slider Container -->
-            <div class="relative overflow-hidden py-6">
-                <!-- Track untuk logo (akan bergerak) -->
-                <div id="logo-track" class="flex space-x-8">
-                    <!-- Logo 1 -->
+            <div class="relative overflow-hidden py-6 group rounded-2xl">
+                <!-- Track -->
+                <div id="logo-track" class="logo-track flex gap-8 items-center">
+                    <!-- LOGO ITEM (akan di-clone oleh JS) -->
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/komdigi.png" alt="KOMINFO Digital" class="max-h-20 max-w-full object-contain" />
-                    </div>
-
-                    <!-- Logo 2 -->
-                    <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/iso9001.jpeg" alt="ISO 9001" class="max-h-20 max-w-full object-contain" />
-                    </div>
-
-                    <!-- Logo 3 -->
-                    <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/iso27001.png" alt="ISO 27001" class="max-h-20 max-w-full object-contain" />
-                    </div>
-
-                    <!-- Logo 4 -->
-                    <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/idxcoop.png" alt="idXCOOP" class="max-h-20 max-w-full object-contain" />
-                    </div>
-
-                    <!-- Logo 5 -->
-                    <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                         <img src="img/kemenumkm.png" alt="KemenUMKM" class="max-h-20 max-w-full object-contain" />
                     </div>
 
-                    <!-- Logo 6 -->
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/kemenkop.png" alt="Kemenkop" class="max-h-20 max-w-full object-contain" />
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/simkopdes.png" alt="KemenUMKM" class="max-h-20 max-w-full object-contain" />
                     </div>
 
-                    <!-- Logo 7 -->
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/ind.png" alt="Indonesian Consortium" class="max-h-20 max-w-full object-contain" />
-                    </div>
-
-                    <!-- Logo 8 -->
-                    <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/ojk.png" alt="OJK" class="max-h-20 max-w-full object-contain" />
-                    </div>
-
-                    <!-- Logo 9 -->
-                    <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/bangga.png" alt="Bangga Buatan Indonesia"
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kemenko-pangan.png" alt="Kemenko Pangan"
                             class="max-h-20 max-w-full object-contain" />
                     </div>
 
-                    <!-- Duplikat untuk efek infinite scroll -->
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/komdigi.png" alt="KOMINFO Digital" class="max-h-20 max-w-full object-contain" />
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kemenkop.png" alt="Kemenkop" class="max-h-20 max-w-full object-contain" />
                     </div>
 
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/iso9001.jpeg" alt="ISO 9001" class="max-h-20 max-w-full object-contain" />
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/mendes.png" alt="Mendes" class="max-h-20 max-w-full object-contain" />
                     </div>
 
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/iso27001.png" alt="ISO 27001" class="max-h-20 max-w-full object-contain" />
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kemenkeu.png" alt="Kemenkeu" class="max-h-20 max-w-full object-contain" />
                     </div>
 
                     <div
-                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 hover:shadow-md transition-shadow duration-300">
-                        <img src="img/idxcoop.png" alt="idXCOOP" class="max-h-20 max-w-full object-contain" />
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/mendagri.png" alt="Mendagri" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kkp.png" alt="KKP" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kemenkes.png" alt="Kemenkes" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kementan.png" alt="Kementan" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kemenhum.png" alt="Kemenkumham" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/bappenas.png" alt="Bappenas" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/kemensos.png" alt="Kemensos" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/bumn.png" alt="BUMN" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/komdigi.png" alt="Kominfo Digital" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/bgn.png" alt="BGN" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/bpn.png" alt="BPN" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/bpkp.png" alt="BPKP" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/gantari.png" alt="Gantari" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/ind.png" alt="Indonesian Consortium" class="max-h-20 max-w-full object-contain" />
+                    </div>
+
+                    <div
+                        class="logo-slide flex-shrink-0 w-40 h-40 bg-white rounded-xl shadow-sm flex items-center justify-center p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <img src="img/bangga.png" alt="Bangga Buatan Indonesia"
+                            class="max-h-20 max-w-full object-contain" />
                     </div>
                 </div>
 
-                <!-- Gradient overlay untuk efek fade di sisi -->
-                <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-100 to-transparent z-10">
+                <!-- Gradient overlay untuk efek fade -->
+                <div
+                    class="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-100 to-transparent z-10">
                 </div>
-                <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-100 to-transparent z-10">
+                <div
+                    class="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-100 to-transparent z-10">
                 </div>
             </div>
         </div>
@@ -1091,67 +1120,127 @@
             <!-- Flex Container untuk rata tengah -->
             <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
                 <!-- Item 1 -->
-                <a href="https://kopdes-mart.marstech.co.id/" target="_blank" rel="noopener noreferrer">
-                    <div
-                        class="border border-gray-200 rounded-xl p-4 bg-white hover:bg-red-50 hover:border-red-300 hover:shadow-sm transition-all duration-200">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-shopping-cart text-red-600 text-xs"></i>
-                            </div>
-                            <div class="text-left">
-                                <h4 class="font-medium text-sm text-gray-800">
-                                    Unit Kopdes POS
-                                </h4>
-                            </div>
+                <a href="https://kopdes-groceries.marstech.co.id/" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-200 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-shopping-basket text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Gerai Sembako (Embrio KopHub)
+                            </h4>
                         </div>
                     </div>
                 </a>
+
                 <!-- Item 2 -->
-                <a href="https://kopdes-pharmacy.marstech.co.id/" target="_blank" rel="noopener noreferrer">
-                    <div
-                        class="border border-gray-200 rounded-xl p-4 bg-white hover:bg-red-50 hover:border-red-300 hover:shadow-sm transition-all duration-200">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-pills text-red-600 text-xs"></i>
-                            </div>
-                            <div class="text-left">
-                                <h4 class="font-medium text-sm text-gray-800">
-                                    Unit Kopdes Klinik
-                                </h4>
-                            </div>
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-50/40 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-pills text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Apotek Desa
+                            </h4>
                         </div>
                     </div>
                 </a>
+
                 <!-- Item 3 -->
-                <a href="https://kopdes-groceries.marstech.co.id/" target="_blank" rel="noopener noreferrer">
-                    <div
-                        class="border border-gray-200 rounded-xl p-4 bg-white hover:bg-red-50 hover:border-red-300 hover:shadow-sm transition-all duration-200">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-shopping-basket text-red-600 text-xs"></i>
-                            </div>
-                            <div class="text-left">
-                                <h4 class="font-medium text-sm text-gray-800">
-                                    Unit Kopdes Toko Sembako
-                                </h4>
-                            </div>
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-50/40 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-building text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Gerai Kantor Koperasi
+                            </h4>
                         </div>
                     </div>
                 </a>
 
                 <!-- Item 4 -->
-                <a href="https://kopdes-warehouse.marstech.co.id/" target="_blank" rel="noopener noreferrer">
-                    <div
-                        class="border border-gray-200 rounded-xl p-4 bg-white hover:bg-red-50 hover:border-red-300 hover:shadow-sm transition-all duration-200">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-warehouse text-red-600 text-xs"></i>
-                            </div>
-                            <div class="text-left">
-                                <h4 class="font-medium text-sm text-gray-800">
-                                    Unit Kopdes Cold Storage
-                                </h4>
-                            </div>
+                <a href="https://usp.kopdes.net/" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-200 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-hand-holding-usd text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Gerai Unit Usaha Simpan Pinjam (Embrio Kop Bank)
+                            </h4>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Item 5 -->
+                <a href="https://kopdes-pharmacy.marstech.co.id/" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-200 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-clinic-medical text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Gerai Klinik Desa
+                            </h4>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Item 6 -->
+                <a href="https://kopdes-warehouse.marstech.co.id/" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-200 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-warehouse text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Gerai Cold Storage/Cold Chain
+                            </h4>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Item 7 -->
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                    class="group block border border-gray-200 rounded-lg p-3 bg-white transition-all duration-200 ease-out hover:border-red-300 hover:bg-red-50/40 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-300 w-full sm:w-[calc(50%-0.375rem)] md:w-[calc(33.333%-0.5rem)]">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 bg-red-50 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-red-100">
+                            <i
+                                class="fas fa-truck text-red-600 text-xs transition-transform duration-200 group-hover:scale-110"></i>
+                        </div>
+                        <div class="text-left">
+                            <h4
+                                class="font-medium text-sm text-gray-800 transition-colors duration-200 group-hover:text-red-700">
+                                Logistik (Distribusi)
+                            </h4>
                         </div>
                     </div>
                 </a>
@@ -1239,161 +1328,373 @@
         <div class="max-w-7xl mx-auto px-6">
             <div
                 class="bg-gradient-to-br from-red-50 to-white rounded-3xl shadow-xl overflow-hidden border border-red-100">
+
+                <!-- Header -->
                 <div class="bg-gradient-to-r from-red-700 to-red-800 text-white px-10 py-8">
                     <h2 class="text-2xl md:text-3xl font-bold leading-snug">
                         Regulasi & Dasar Hukum
                     </h2>
                 </div>
 
-                <!-- Simple Tabs -->
+                <!-- Tabs -->
                 <div class="border-b border-gray-200">
-                    <div class="flex px-6 pt-6">
-                        <button onclick="showTab('uu')"
-                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition active"
-                            data-tab="uu">
-                            UU
-                        </button>
-                        <button onclick="showTab('pp')"
-                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition"
-                            data-tab="pp">
-                            PP
-                        </button>
-                        <button onclick="showTab('keppres')"
-                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition"
-                            data-tab="keppres">
-                            Keppres
-                        </button>
-                        <button onclick="showTab('lainnya')"
-                            class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-700 border-b-2 border-transparent hover:border-red-300 transition"
-                            data-tab="lainnya">
-                            Lainnya
-                        </button>
+                    <div class="px-6 pt-6">
+                        <div
+                            class="tab-scroll flex items-center gap-8 overflow-x-auto whitespace-nowrap pb-3 [-ms-overflow-style:none] [scrollbar-width:none]">
+
+                            <!-- TAB ITEM -->
+                            <button onclick="showTab('uu')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="uu">
+                                Undang-Undang
+                            </button>
+
+                            <button onclick="showTab('pemerintah')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="pemerintah">
+                                Peraturan Pemerintah
+                            </button>
+
+                            <button onclick="showTab('perpres')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="perpres">
+                                Peraturan Presiden
+                            </button>
+
+                            <button onclick="showTab('keppres')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="keppres">
+                                Keputusan Presiden
+                            </button>
+
+                            <button onclick="showTab('inpres')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="inpres">
+                                Instruksi Presiden
+                            </button>
+
+                            <button onclick="showTab('permen')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="permen">
+                                Peraturan Menteri
+                            </button>
+
+                            <button onclick="showTab('kepmen')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="kepmen">
+                                Keputusan Menteri
+                            </button>
+
+                            <button onclick="showTab('se')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="se">
+                                Surat Edaran Menteri
+                            </button>
+
+                            <button onclick="showTab('surat')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="surat">
+                                Surat
+                            </button>
+
+                            <button onclick="showTab('lainnya')"
+                                class="tab-button text-gray-700 font-medium pb-3 border-b-2 border-transparent hover:text-red-700 hover:border-red-300 transition"
+                                data-tab="lainnya">
+                                Lainnya
+                            </button>
+
+                        </div>
                     </div>
                 </div>
 
+                <!-- Content -->
                 <div class="px-10 py-8">
-                    <!-- Tab Content: UU -->
+
+                    <!-- UU -->
                     <div id="tab-uu" class="tab-content">
-                        <h3 class="text-xl font-bold mb-6 text-gray-800">
-                            Undang-Undang
-                        </h3>
-                        <div class="space-y-4">
-                            <div
-                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
-                                <i class="fas fa-file-contract text-red-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">
-                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/1.%20UU%20Nomor%2025%20Tahun%201992.pdf"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="text-red-700 hover:underline">
-                                            UU No. 25 Tahun 1992
-                                        </a>
-                                    </h4>
-                                    <p class="text-gray-600 text-sm">Tentang Perkoperasian</p>
-                                </div>
-                            </div>
+                        <div class="space-y-5">
+
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/1.%20UU%20Nomor%2025%20Tahun%201992.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Undang-Undang Nomor 25 Tahun 1992 tentang Perkoperasian
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/3.%20UU%20Nomor%2059%20Tahun%202024.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Undang-Undang Nomor 59 Tahun 2024 tentang Rencana Pembangunan Jangka Panjang Nasional
+                                Tahun 2025–2045
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Tab Content: PP -->
-                    <div id="tab-pp" class="tab-content hidden">
-                        <h3 class="text-xl font-bold mb-6 text-gray-800">
-                            Peraturan Pemerintah
-                        </h3>
-                        <div class="space-y-4">
-                            <div
-                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
-                                <i class="fas fa-file-alt text-red-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">
-                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/2.%20PP%20Nomor%207%20Tahun%202021.pdf"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="text-red-700 hover:underline">
-                                            Peraturan Pemerintah Nomor 7 Tahun 2021
-                                        </a>
-                                    </h4>
-                                    <p class="text-gray-600 text-sm">
-                                        tentang Kemudahan, Pelindungan dan Pemberdayaan Koperasi
-                                        dan Usaha Mikro, Kecil dan Menengah
-                                    </p>
-                                </div>
-                            </div>
+                    <!-- Peraturan Pemerintah -->
+                    <div id="tab-pemerintah" class="tab-content">
+                        <div class="space-y-5">
+
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/2.%20PP%20Nomor%207%20Tahun%202021.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Pemerintah Nomor 7 Tahun 2021 tentang Kemudahan, Pelindungan dan Pemberdayaan
+                                Koperasi dan Usaha Mikro, Kecil dan Menengah
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/4.%20PP%20Nomor%2011%20Tahun%202021.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Pemerintah Nomor 11 Tahun 2021 tentang Badan Usaha Milik Desa
+                            </a>
+
                         </div>
                     </div>
 
-                    <!-- Tab Content: Keppres -->
+                    <!-- Perpres -->
+                    <div id="tab-perpres" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/5.%20Perpres%20Nomor%2012%20Tahun%202025.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Presiden Nomor 12 tahun 2025 tentang Rancangan Pembangunan Jangka Menengah
+                                Nasional tahun 2025–2029
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Keppres -->
                     <div id="tab-keppres" class="tab-content hidden">
-                        <h3 class="text-xl font-bold mb-6 text-gray-800">
-                            Keputusan Presiden
-                        </h3>
-                        <div class="space-y-4">
-                            <div
-                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
-                                <i class="fas fa-file-alt text-red-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">
-                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/15.%20Keputusan%20Presiden%20Republik%20Indonesia%20Nomor%209%20Tahun%202025%20Tentang%20Satuan%20Tugas%20Percepatan%20Pembentukan%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="text-red-700 hover:underline">
-                                            Keputusan Presiden Republik Indonesia Nomor 9 Tahun 2025
-                                        </a>
-                                    </h4>
-                                    <p class="text-gray-600 text-sm">
-                                        Tentang Satuan Tugas Percepatan Pembentukan Koperasi
-                                        Desa/Kelurahan Merah Putih
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/15.%20Keputusan%20Presiden%20Republik%20Indonesia%20Nomor%209%20Tahun%202025%20Tentang%20Satuan%20Tugas%20Percepatan%20Pembentukan%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Keputusan Presiden Republik Indonesia Nomor 9 Tahun 2025 Tentang Satgas Percepatan
+                                Pembentukan Kopdes Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
                         </div>
                     </div>
 
-                    <!-- Tab Content: Lainnya -->
-                    <div id="tab-lainnya" class="tab-content hidden">
-                        <h3 class="text-xl font-bold mb-6 text-gray-800">Lainnya</h3>
-                        <div class="space-y-4">
-                            <div
-                                class="flex gap-3 p-3 bg-white rounded-lg border border-gray-100 hover:border-red-200 transition">
-                                <i class="fas fa-file-alt text-red-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">
-                                        <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/11.%20Petunjuk%20Pelaksanaan%20Kopdes%20Merah%20Putih%20Paraf%20%26%20TTD%20Menteri%20Koperasi.pdf"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="text-red-700 hover:underline">
-                                            Petunjuk Pelaksanaan Menteri Koperasi Republik Indonesia
-                                            Nomor 1 Tahun 2025
-                                        </a>
-                                    </h4>
-                                    <p class="text-gray-600 text-sm">
-                                        Tentang Pembentukan Koperasi Desa/Kelurahan Merah Putih
-                                    </p>
-                                </div>
-                            </div>
+                    <!-- Inpres -->
+                    <div id="tab-inpres" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/6.%20INPRES%20NOMOR%209%20TAHUN%202025-%20Koperasi%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Instruksi Presiden Republik Indonesia Nomor 9 Tahun 2025 tentang Percepatan Pembentukan
+                                Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/26.%20INSTRUKSI%20PRESIDEN%20REPUBLIK%20INDONESIA%20NOMOR%2017%20TAHUN%202025%20TENTANG%20PERCEPATAN%20PEMBANGUNAN%20FISIK%20GERAI%2C%20PERGUDANGAN%20DAN%20PERLENGKAPAN%20KOPERASI%20DESA%2C%20KELURAHAN%20MERAH%20PUTIH.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Instruksi Presiden Republik Indonesia Nomor 17 Tahun 2025 tentang Percepatan Pembangunan
+                                Fisik Gerai, Pergudangan, dan Kelengkapan Koperasi Desa/Kelurahan Merah Putih
+                            </a>
                         </div>
                     </div>
+
+                    <!-- Permen -->
+                    <div id="tab-permen" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/21%20Peraturan%20Menteri%20Desa%20Dan%20Pembangunan%20Daerah%20Tertinggal%20Republik%20Indonesia%20Nomor%2010%20Tahun%202025%20Tentang%20Mekanisme%20Persetujuan%20Dari%20Kepala%20Desa%20Dalam%20Rangka%20Pembiayaan%20Koperasi%20Desa%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Desa Dan Pembangunan Daerah Tertinggal Republik Indonesia Nomor 10
+                                Tahun 2025 Tentang Mekanisme Persetujuan Dari Kepala Desa Dalam Rangka Pembiayaan
+                                Koperasi Desa Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/12.%20Peraturan%20Menteri%20Hukum%20Nomor%2013%20Tahun%202025%20tentang%20Pengesahan%20Koperasi.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Hukum Nomor 13 Tahun 2025 tentang Pengesahan Koperasi
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/7.%20PERATURAN%20MENTERI%20%20DESA%2C%20PEMBANGUNAN%20DAERAH%20TERTINGGAL%2C%20DAN%20TRANSMIGRASI%20%20REPUBLIK%20INDONESIA%20NOMOR%207%20TAHUN%202023%20TENTANG%20RINCIAN%20PRIORITAS%20PENGGUNAAN%20DANA%20DESA.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Desa Pembangunan Daerah Tertinggal dan Transmigrasi No 7 Tahun 2023
+                                tentang Prioritas Penggunaan Dana Desa tahun 2024
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/22%20Peraturan%20Menteri%20Keuangan%20Republik%20Indonesia%20Nomor%2049%20Tahun%202025%20Tentang%20Tata%20Cara%20Pinjaman%20Dalam%20Rangka%20Pendanaan%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Keuangan Republik Indonesia Nomor 49 Tahun 2025 Tentang Tata Cara
+                                Pinjaman Dalam Rangka Pendanaan Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/23.%20PMK%2063_2025%20Penggunaan%20SAL%202025%20untuk%20KDMP.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Keuangan Republik Indonesia Nomor 63 Tahun 2025 Tentang Penggunaan
+                                Saldo Anggaran Lebih Pada Tahun Anggaran 2025 Untuk Pemberian Dukungan Kepada Bank Yang
+                                Menyalurkan Pinjaman Kepada Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/24.%20Permendagri%20No.%2013%20Tahun%202025.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Dalam Negeri Republik Indonesia Nomor 13 Tahun 2025 Tentang Dukungan
+                                Bupati/Wali Kota Dalam Pendanaan Koperasi Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/20.%20Peraturan%20Menteri%20Koperasi%20No.%201%20Tahun%202025%20tentang%20Peraturan%20Menteri%20Koperasi%20Republik%20Indonesia%20No%201%20Tahun%202025%20Tentang%20Penyaluran%20Pinjaman%20Atau%20Pembiayaan%20Dana%20Bergulir%20Kepada%20Koperasi%20Percontohan%20(Mock%20Up)%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Koperasi Republik Indonesia Nomor 1 Tahun 2025 Tentang Penyaluran
+                                Pinjaman Atau Pembiayaan Dana Bergulir Kepada Koperasi Percontohan (Mock Up) Koperasi
+                                Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/25.%20Peraturan%20Menteri%20Koperasi%20Republik%20Indonesia%20Nomor%202%20Tahun%202025%20Tentang%20Pengembangan%20Usaha%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Koperasi Republik Indonesia Nomor 2 Tahun 2025 Tentang Pengembangan
+                                Usaha Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/29.%20Permendagri%20No.%2013%20Tahun%202025.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Dalam Negeri Republik Indonesia Nomor 13 Tahun 2025 Tentang Dukungan
+                                Bupati/wali Kota Dalam Pendanaan Koperasi Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/31.%20Peraturan%20Menteri%20Keuangan%20Republik%20Indonesia%20Nomor%2081%20Tahun%202025%20Tentang%20Perubahan%20Atas%20Peraturan%20Menteri%20Keuangan%20Nomor%20108%20Tahun%202024%20Tentang%20Pengalokasian%20Dana%20Desa%20Setiap%20Desa%2C%20Penggunaan%2C%20Dan%20Penyaluran%20Dana%20Desa%20Tahun%20Anggaran%202025.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Keuangan Republik Indonesia Nomor 81 Tahun 2025 Tentang Perubahan Atas
+                                Peraturan Menteri Keuangan Nomor 108 Tahun 2024 Tentang Pengalokasian Dana Desa Setiap
+                                Desa, Penggunaan, Dan Penyaluran Dana Desa Tahun Anggaran 2025
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/32.%20Peraturan%20Menteri%20Desa%20dan%20PDT%20Nomor%2016%20Tahun%202025%20tentang%20Petunjuk%20Operasional%20atas%20Fokus%20Penggunaan%20Dana%20Desa%20Tahun%202026.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Peraturan Menteri Desa dan PDT Nomor 16 Tahun 2025 tentang Petunjuk Operasional atas
+                                Fokus Penggunaan Dana Desa Tahun 2026
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kepmen -->
+                    <div id="tab-kepmen" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/9.%20SK%20Satgas%20Kemenkop%20Kopdes%20Merah%20Putih_Final.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Keputusan Menteri Koperasi Nomor 9 Tahun 2025 tentang Satuan Tugas Pembentukan Koperasi
+                                Desa Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/27.%20FINAL%20SKB%204%20Menteri%20dan%202%20Lembaga%2017%2020.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Keputusan Bersama Menteri Koperasi, Menteri Keuangan, Menteri Dalam Negeri, Menteri Desa
+                                dan Pembangunan Daerah Tertinggal, dan Kepala Badan Pengaturan Badan Usaha Milik Negara
+                                serta Kepala Badan Pelaksana Badan Pengelola Investasi Daya Anagata Nusantara
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Surat Edaran -->
+                    <div id="tab-se" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/30.%20Surat%20Edaran%20Nomor%20100.3.1.3%3A8944%3ASJ%20Tentang%20Percepatan%20Pembangunan%20Fisik%20Gerai%2C%20Pergudangan%2C%20Dan%20Kelengkapan%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Edaran Nomor 100.3.1.3/8944/SJ Tentang Percepatan Pembangunan Fisik Gerai,
+                                Pergudangan, Dan Kelengkapan Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/28.%20B-1230%20Penyampaian%20SE%20MENKOP%20No%204%20Tahun%202025.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Edaran Menteri Koperasi Republik Indonesia Nomor 4 Tahun 2025 tentang Pendataan
+                                Aset Tanah dan/atau Bangunan
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/10.%20SE%20No%201%20Thn%202025%20%20Tata%20Cara%20Pembentukan%20Koperasi%20Desa%20Merah%20Putih_Ok%20.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Edaran Menteri Koperasi No 1 Tahun 2025 Tata Cara Pembentukan Koperasi Desa Merah
+                                Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/8.%20SE%20Menteri%20Desa%20dan%20PDT%20Nomor%206%20Tahun%202025%20tentang%20Juknis%20Percepatan%20Pelaksanaan%20Pembentukan%20Kopdes%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Edaran Menteri Desa dan Pembangunan Daerah Tertinggal dan Transmigrasi Nomor 6
+                                Tahun 2025 tentang Petunjuk Teknis Percepatan Pelaksanaan Pembentukan Kopdes Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/13.%20SE%20PERCEPATAN%20KOPDESKEL%20MERAH%20PUTIH_250507_123216.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Edaran Menteri Dalam Negeri Nomor 500.3/2438/SJ Tentang Percepatan Pembentukan
+                                Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Surat -->
+                    <div id="tab-surat" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/17.%20Surat%20Direktorat%20Jendral%20Pembangunan%20Desa%20dan%20Pedesaan%20Nomor%20B-143%20tentang%20Pengunaan%20Dana%20Desa%20untuk%20Pembentukan%20Koperasi%20Desa%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Direktorat Jendral Pembangunan Desa dan Pedesaan Nomor B-143 tentang Pengunaan
+                                Dana Desa untuk Pembentukan Koperasi Desa Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/18.%20Surat%20Menteri%20Koordinator%20Bidang%20Pangan%20tentang%20Percepatan%20Pelaksanaan%20Musyawarah%20Desa%3AKelurahan%20Khusus%20dan%20Pendirian%2018.%20Koperasi%20Desa%3AKelurahan%20Merah%20Putih.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Menteri Koordinator Bidang Pangan tentang Percepatan Pelaksanaan Musyawarah
+                                Desa/Kelurahan Khusus dan Pendirian Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/19.%20Surat%20Direktorat%20Jendral%20Bina%20Pemerintahan%20Desa%20Kementerian%20Dalam%20Negeri%20Kodefikasi%20Koperasi%20Desa%3AKelurahan%20Merah%20Puith.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Direktorat Jenderal Bina Pemerintahan Desa Kementerian Dalam Negeri Kodefikasi
+                                Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/16.%20Surat%20Menteri%20Keuangan%20No%20S-9%20Tahun%202025%20tentang%20Penyaluran%20Dana%20Desa%20Tahap%20II%20Tahun%202025.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Surat Menteri Keuangan No S-9 Tahun 2025 tentang Penyaluran Dana Desa Tahap II Tahun
+                                2025
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Lainnya -->
+                    <div id="tab-lainnya" class="tab-content hidden">
+                        <div class="space-y-5">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/11.%20Petunjuk%20Pelaksanaan%20Kopdes%20Merah%20Putih%20Paraf%20%26%20TTD%20Menteri%20Koperasi.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Petunjuk Pelaksanaan Menteri Koperasi Republik Indonesia Nomor 1 Tahun 2025 Tentang
+                                Pembentukan Koperasi Desa/Kelurahan Merah Putih
+                            </a>
+                            <hr class="mt-4 border-0 h-px bg-gradient-to-r from-transparent via-red-200 to-transparent">
+                            <a href="https://storage.googleapis.com/kopdes-merah-putih/regulations/14.%20NOTA%20KESEPAHAMAN%20ANTARA%20KEMENKOP%20DAN%20PENGURUS%20INI_0001.pdf"
+                                target="_blank" rel="noopener noreferrer"
+                                class="block text-red-700 hover:text-red-800 hover:underline transition">
+                                Nota Kesepahaman Antara Kementerian Koperasi Republik Indonesia dan Pengurus Pusat
+                                Ikatan Notaris Indonesia
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
-
-    <script>
-        function showTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll(".tab-content").forEach((content) => {
-                content.classList.add("hidden");
-            });
-
-            // Remove active class from all buttons
-            document.querySelectorAll(".tab-button").forEach((button) => {
-                button.classList.remove("active");
-            });
-
-            // Show selected tab
-            document.getElementById("tab-" + tabId).classList.remove("hidden");
-
-            // Add active class to clicked button
-            event.target.classList.add("active");
-        }
-    </script>
 
     <!-- BERITA SECTION -->
     <section id="berita" class="py-10 bg-gray-50">
@@ -1523,12 +1824,12 @@
                             class="flex items-center justify-between gap-4 p-4 bg-white/60 rounded-2xl border border-white">
                             <div>
                                 <p class="text-gray-800 font-bold leading-tight">
-                                    +62 811-363-609
+                                    +62 821-4096-6279
                                 </p>
-                                <p class="text-gray-500 text-xs">Administrasi 1</p>
+                                <p class="text-gray-500 text-xs">Marketing 1</p>
                             </div>
 
-                            <a href="https://wa.me/62811363609" target="_blank" rel="noopener noreferrer"
+                            <a href="https://wa.me/6282140966279" target="_blank" rel="noopener noreferrer"
                                 class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition font-semibold shadow-sm whitespace-nowrap">
                                 <i class="fab fa-whatsapp"></i>
                                 <span class="text-sm">Chat</span>
@@ -1540,12 +1841,12 @@
                             class="flex items-center justify-between gap-4 p-4 bg-white/60 rounded-2xl border border-white">
                             <div>
                                 <p class="text-gray-800 font-bold leading-tight">
-                                    +62 821-4096-6279
+                                    +62 811-363-609
                                 </p>
-                                <p class="text-gray-500 text-xs">Administrasi 2</p>
+                                <p class="text-gray-500 text-xs">Marketing 2</p>
                             </div>
 
-                            <a href="https://wa.me/6282140966279" target="_blank" rel="noopener noreferrer"
+                            <a href="https://wa.me/62811363609" target="_blank" rel="noopener noreferrer"
                                 class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition font-semibold shadow-sm whitespace-nowrap">
                                 <i class="fab fa-whatsapp"></i>
                                 <span class="text-sm">Chat</span>
@@ -1688,12 +1989,12 @@
                             <i class="fas fa-phone text-red-500"></i>
                             <div class="space-y-2 leading-relaxed">
                                 <p>
-                                    <span class="font-medium text-white">Admin 1</span><br />
-                                    +62 811-363-609
+                                    <span class="font-medium text-white">Marketing 1</span><br />
+                                    +62 821-4096-6279
                                 </p>
                                 <p>
-                                    <span class="font-medium text-white">Admin 2</span><br />
-                                    +62 821-4096-6279
+                                    <span class="font-medium text-white">Marketing 2</span><br />
+                                    +62 811-363-609
                                 </p>
                             </div>
                         </li>
@@ -1974,16 +2275,13 @@
         });
 
         // Slider untuk mitra
-        let logoSliderInterval;
-        let currentSlide = 0;
-        const totalSlides = 3; // Ada 3 set logo
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.getElementById("logo-track");
+            if (!track) return;
 
-        function startLogoSlider() {
-            logoSliderInterval = setInterval(() => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateLogoDots();
-            }, 10000); // Ganti slide setiap 10 detik
-        }
+            // clone semua isi track 1x (jadi 2 set)
+            track.innerHTML += track.innerHTML;
+        });
 
         // Mulai slider saat halaman dimuat
         document.addEventListener("DOMContentLoaded", () => {
@@ -2072,6 +2370,32 @@
                 }, 2500);
             });
         }
+
+        function showTab(tabName) {
+            // hide all content
+            document.querySelectorAll(".tab-content").forEach((content) => {
+                content.classList.add("hidden");
+            });
+
+            // show selected
+            document.getElementById("tab-" + tabName).classList.remove("hidden");
+
+            // reset all buttons
+            document.querySelectorAll(".tab-button").forEach((btn) => {
+                btn.classList.remove("text-red-700", "border-red-700");
+                btn.classList.add("text-gray-700", "border-transparent");
+            });
+
+            // active button
+            const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
+            activeBtn.classList.remove("text-gray-700", "border-transparent");
+            activeBtn.classList.add("text-red-700", "border-red-700");
+        }
+
+        // default active
+        document.addEventListener("DOMContentLoaded", () => {
+            showTab("uu");
+        });
     </script>
 </body>
 
